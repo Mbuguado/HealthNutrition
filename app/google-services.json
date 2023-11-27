@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "899747601980",
+    "project_id": "healthnutrition-dfd2a",
+    "storage_bucket": "healthnutrition-dfd2a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:899747601980:android:e8e901e4950a3c00d9ed39",
+        "android_client_info": {
+          "package_name": "com.example.healthnutrition"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCrJggy0JJRAmzkf0VNffzhxgi81m51avY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
