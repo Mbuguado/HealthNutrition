@@ -2,4 +2,7 @@
     <string name="app_name">HealthNutrition</string>
     <string name="sign_in">Sign In</string>
     <string name="default_web_client_id">899747601980-kk9gsea6svr026m9id46prnjnmkm47u6.apps.googleusercontent.com</string>
+    <string name="home">Home</string>
+    <string name="blogs">Blogs</string>
+    <string name="profile">Profile</string>
 </resources>
