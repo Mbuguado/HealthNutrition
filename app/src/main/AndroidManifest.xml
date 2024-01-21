@@ -13,7 +13,7 @@
         android:theme="@style/Theme.HealthNutrition"
         tools:targetApi="31">
         <activity
-            android:name=".ui.SignIn"
+            android:name=".auth.SignIn"
             android:exported="false" />
 
         <activity
