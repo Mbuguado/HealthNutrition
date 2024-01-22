@@ -32,34 +32,7 @@
 
     </com.google.android.material.textfield.TextInputLayout>
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/passwordContainer"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
-        android:layout_marginHorizontal="20dp"
-        app:helperText="Required"
-        app:helperTextTextColor="@android:color/holo_red_dark"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="10dp"
-        app:counterEnabled="true"
-        app:counterMaxLength="16"
-        app:passwordToggleEnabled="true"
-        android:layout_marginEnd="30dp"
-        app:layout_constraintEnd_toEndOf="@+id/emailContainer"
-        app:layout_constraintStart_toStartOf="@+id/emailContainer"
-        app:layout_constraintTop_toBottomOf="@+id/emailContainer">
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/passwordEditText"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:lines="1"
-            android:maxLength="16"
-            android:inputType="textPassword"
-            android:hint="@string/enter_password"/>
-
-    </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/nameContainer"
@@ -72,9 +45,9 @@
         android:layout_marginStart="30dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="30dp"
-        app:layout_constraintEnd_toEndOf="@+id/passwordContainer"
-        app:layout_constraintStart_toStartOf="@+id/passwordContainer"
-        app:layout_constraintTop_toBottomOf="@+id/passwordContainer">
+        app:layout_constraintEnd_toEndOf="@+id/emailContainer"
+        app:layout_constraintStart_toStartOf="@+id/emailContainer"
+        app:layout_constraintTop_toBottomOf="@+id/emailContainer">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/fullNameEditText"
@@ -140,6 +113,35 @@
 
     </com.google.android.material.textfield.TextInputLayout>
 
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/passwordContainer"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+        android:layout_marginHorizontal="20dp"
+        app:helperText="Required"
+        app:helperTextTextColor="@android:color/holo_red_dark"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="10dp"
+        app:counterEnabled="true"
+        app:counterMaxLength="16"
+        app:passwordToggleEnabled="true"
+        android:layout_marginEnd="30dp"
+        app:layout_constraintEnd_toEndOf="@+id/countryContainer"
+        app:layout_constraintStart_toStartOf="@+id/countryContainer"
+        app:layout_constraintTop_toBottomOf="@+id/countryContainer">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/passwordEditText"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:lines="1"
+            android:maxLength="16"
+            android:inputType="textPassword"
+            android:hint="@string/enter_password"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
     <Button
         android:id="@+id/signup"
         android:layout_width="300dp"
@@ -147,9 +149,9 @@
         android:layout_marginTop="10dp"
         android:text="@string/sign_up"
         android:backgroundTint="@color/primary"
-        app:layout_constraintEnd_toEndOf="@+id/countryContainer"
-        app:layout_constraintStart_toStartOf="@+id/countryContainer"
-        app:layout_constraintTop_toBottomOf="@+id/countryContainer" />
+        app:layout_constraintEnd_toEndOf="@+id/passwordContainer"
+        app:layout_constraintStart_toStartOf="@+id/passwordContainer"
+        app:layout_constraintTop_toBottomOf="@+id/passwordContainer" />
 
     <Button
         android:id="@+id/go_to_sign_in"
