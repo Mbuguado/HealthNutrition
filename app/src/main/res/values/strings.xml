@@ -5,4 +5,13 @@
     <string name="home">Home</string>
     <string name="blogs">Blogs</string>
     <string name="profile">Profile</string>
+    <string name="don_t_have_an_account_signup">Don\'t have an account ? SignUp</string>
+    <string name="forgot_password">Forgot Password ?</string>
+    <string name="enter_password">Enter Password</string>
+    <string name="enter_email">Enter Email</string>
+    <string name="already_have_an_account_sign_in">Already have an account ? Sign In</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="enter_country">Enter Country</string>
+    <string name="enter_phone_number">Enter Phone Number</string>
+    <string name="enter_full_name">Enter Full Name</string>
 </resources>
