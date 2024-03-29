@@ -239,7 +239,7 @@ class SignUp : AppCompatActivity() {
     private fun haveAnAccount() {
         val signin:Button = findViewById(R.id.go_to_sign_in)
         signin.setOnClickListener {
-            val intent = Intent(this, SignUp::class.java)
+            val intent = Intent(this, SignIn::class.java)
             startActivity(intent)
             finish()
         }
