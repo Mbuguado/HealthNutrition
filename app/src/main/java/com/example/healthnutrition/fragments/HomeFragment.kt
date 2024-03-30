@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AlertDialog
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.healthnutrition.R
@@ -29,7 +30,7 @@ class HomeFragment : Fragment() {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_home, container, false)
         recyclerView = view.findViewById(R.id.recyclerView) // Fixed here
-        recyclerView.layoutManager = LinearLayoutManager(context)
+        recyclerView.layoutManager = GridLayoutManager(context, 2)
 
         val adapter = HerbAdapter(emptyList())
         recyclerView.adapter = adapter
