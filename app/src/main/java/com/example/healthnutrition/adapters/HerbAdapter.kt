@@ -5,10 +5,12 @@ import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.healthnutrition.R
 import com.example.healthnutrition.model.HerbX
+import com.squareup.picasso.Picasso
 
 class HerbAdapter(private var herbs: List<HerbX>) : RecyclerView.Adapter<HerbAdapter.HerbViewHolder>() {
 
@@ -22,7 +24,7 @@ class HerbAdapter(private var herbs: List<HerbX>) : RecyclerView.Adapter<HerbAda
         val herb = herbs[position]
         holder.nameTextView.text = herb.Name
         holder.propertiesTextView.text = herb.Properties
-        holder.useTextView.text = "Use: ${herb.Use}"
+        Picasso.get().load(herb.Image).into(holder.imageView)
     }
 
     override fun getItemCount(): Int = herbs.size
@@ -30,9 +32,10 @@ class HerbAdapter(private var herbs: List<HerbX>) : RecyclerView.Adapter<HerbAda
     class HerbViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var nameTextView: TextView = itemView.findViewById(R.id.textViewName)
         var propertiesTextView: TextView = itemView.findViewById(R.id.textViewProperties)
-        var useTextView: TextView = itemView.findViewById(R.id.textViewUse)
+        var imageView: ImageView = itemView.findViewById(R.id.imageView)
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     fun updateHerbs(newHerbs: List<HerbX>) {
         herbs = newHerbs
         notifyDataSetChanged()

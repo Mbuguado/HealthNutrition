@@ -1,6 +1,7 @@
 package com.example.healthnutrition.fragments
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -27,7 +28,7 @@ class HomeFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_home, container, false)
-        val recyclerView: RecyclerView = view.findViewById(R.id.recyclerView)
+        recyclerView = view.findViewById(R.id.recyclerView) // Fixed here
         recyclerView.layoutManager = LinearLayoutManager(context)
 
         val adapter = HerbAdapter(emptyList())
@@ -51,19 +52,23 @@ class HomeFragment : Fragment() {
 
     private fun fetchHerbsForType(type: String) {
         val databaseReference = FirebaseDatabase.getInstance().getReference("DiabetesHerbs")
-        databaseReference.child(type).addValueEventListener(object : ValueEventListener {
+        databaseReference.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
-                val diabetesHerb = snapshot.getValue(DiabetesHerb::class.java)
-                diabetesHerb?.let {
-                    (recyclerView.adapter as? HerbAdapter)?.updateHerbs(it.Herbs)
+                val diabetesHerbsList = snapshot.children.mapNotNull { it.getValue(DiabetesHerb::class.java) }
+                val selectedTypeHerbs = diabetesHerbsList.find { it.Type.equals(type, ignoreCase = true) }?.Herbs
+                selectedTypeHerbs?.let {
+                    (recyclerView.adapter as? HerbAdapter)?.updateHerbs(it)
                 }
             }
 
             override fun onCancelled(error: DatabaseError) {
-
+                // Handle potential errors.
+                Log.w("HomeFragment", "loadPost:onCancelled", error.toException())
             }
         })
     }
+
+
 
 
 }
