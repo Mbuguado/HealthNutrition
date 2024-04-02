@@ -14,4 +14,6 @@
     <string name="enter_country">Enter Country</string>
     <string name="enter_phone_number">Enter Phone Number</string>
     <string name="enter_full_name">Enter Full Name</string>
+    <string name="logo">logo</string>
+    <string name="order">Order</string>
 </resources>
