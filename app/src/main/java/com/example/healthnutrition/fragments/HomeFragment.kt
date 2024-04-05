@@ -1,5 +1,7 @@
 package com.example.healthnutrition.fragments
 
+import android.app.Dialog
+import android.content.ContentValues.TAG
 import android.os.Bundle
 import android.text.InputType
 import android.util.Log
@@ -7,6 +9,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
@@ -23,10 +26,14 @@ import com.example.healthnutrition.model.DiabetesHerb
 import com.example.healthnutrition.model.HerbX
 import com.example.healthnutrition.mpesa.AppUtils
 import com.example.healthnutrition.mpesa.Config
+import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import com.google.firebase.firestore.FieldValue
+import com.google.firebase.firestore.FirebaseFirestore
 
 
 class HomeFragment : Fragment() {
@@ -34,6 +41,7 @@ class HomeFragment : Fragment() {
     private lateinit var recyclerView: RecyclerView
     private lateinit var daraja: Daraja
     private lateinit var progressDialog: ProgressDialogFragment
+    private lateinit var fab: FloatingActionButton
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -50,6 +58,12 @@ class HomeFragment : Fragment() {
         daraja = getDaraja()
         accessToken()
         recyclerView.adapter = adapter
+
+        fab = view.findViewById(R.id.chat)
+        fab
+            .setOnClickListener {
+                showGreetingDialog()
+            }
 
         showDiabetesTypeDialog()
 
@@ -178,6 +192,44 @@ class HomeFragment : Fragment() {
         progressDialog.dismiss()
     }
 
+    private fun showGreetingDialog() {
+        val dialog = Dialog(requireContext())
+        dialog.setContentView(R.layout.dialog_chat)
+        dialog.setTitle("Chat")
+
+        val sendButton: Button = dialog.findViewById(R.id.sendButton)
+        val inputMessage: EditText = dialog.findViewById(R.id.inputMessage)
+
+        sendButton.setOnClickListener {
+            val message = inputMessage.text.toString()
+            sendMessageToFirestore(message)
+            dialog.dismiss()
+        }
+        dialog.show()
+    }
+
+    private fun sendMessageToFirestore(message: String) {
+        val db = FirebaseFirestore.getInstance()
+        val userEmail = FirebaseAuth.getInstance().currentUser?.email ?: "anonymous"
+        val chatMessage = hashMapOf(
+            "message" to message,
+            "timestamp" to FieldValue.serverTimestamp(),
+            "sender" to userEmail
+        )
+
+        db.collection("chats")
+            .add(chatMessage)
+            .addOnSuccessListener {
+                Toast.makeText(
+                    requireContext(),
+                    "We Will get back to you shortly",
+                    Toast.LENGTH_LONG
+                ).show()
+            }
+            .addOnFailureListener {
+                Log.w(TAG, "Error adding document")
+            }
+    }
 
 
 
